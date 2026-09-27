@@ -1,0 +1,1744 @@
+/* ==========================================================================
+   OTRO CAFECITO - ESTILOS CSS3 PURO (Mobile First)
+   DRINKS, PASTRIES & BRACELETS (Solo Pick Up)
+   ========================================================================== */
+
+/* 1. VARIABLES DE TEMA & IDENTIDAD VISUAL */
+:root {
+  /* Paleta Oficial Brand Book */
+  --color-bg: #F6EFE6;
+  --color-bg-alt: #FAF6F0;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #FDFBF8;
+  
+  --color-primary: #5A3D31;        /* Marrón café oscuro para textos y bordes */
+  --color-primary-light: #7A5747;
+  --color-primary-soft: rgba(90, 61, 49, 0.08);
+  --color-primary-border: rgba(90, 61, 49, 0.14);
+
+  /* Acentos Muted Pastels */
+  --color-taro: #9D81BA;          /* Lila suave pastel */
+  --color-taro-bg: #F3EDF8;
+  --color-matcha: #7B9B79;        /* Verde olivo suave */
+  --color-matcha-bg: #EDF3EC;
+  --color-caramel: #C67C4E;       /* Caramelo cálido */
+  --color-caramel-bg: #FDF1EA;
+  --color-berry: #D96B7D;         /* Rosa frambuesa para sodas/tizanas */
+  --color-berry-bg: #FDF0F2;
+  
+  --color-text-main: #3C2A22;
+  --color-text-muted: #725D52;
+  --color-text-light: #9B887E;
+
+  /* Sombras y Elevaciones */
+  --shadow-sm: 0 2px 8px rgba(90, 61, 49, 0.05);
+  --shadow-card: 0 4px 15px rgba(90, 61, 49, 0.08);
+  --shadow-hover: 0 10px 25px rgba(90, 61, 49, 0.12);
+  --shadow-float: 0 12px 30px rgba(90, 61, 49, 0.18);
+
+  /* Tipografías */
+  --font-heading: 'Poppins', 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Radios de borde orgánicos */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+
+  /* Transiciones */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 2. RESET Y BASES */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  font-size: 1rem;
+  overflow-x: hidden;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(157, 129, 186, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 90% 70%, rgba(123, 155, 121, 0.04) 0%, transparent 25%);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* 2.1 BANNER DE ANUNCIO PICK UP */
+.pickup-announcement-bar {
+  background: var(--color-primary);
+  color: var(--color-bg-alt);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  letter-spacing: 0.01em;
+}
+
+.pickup-announcement-bar .badge-pickup {
+  background: var(--color-caramel);
+  color: #FFF;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.18rem 0.6rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.05em;
+}
+
+.pickup-announcement-bar a {
+  text-decoration: underline;
+  color: #FFF;
+  font-weight: 700;
+  transition: opacity var(--transition-fast);
+}
+
+.pickup-announcement-bar a:hover {
+  opacity: 0.85;
+}
+
+/* 2.2 TICKER MARQUEE DIVERTIDO */
+.fun-ticker-wrapper {
+  background: #FFF;
+  border-top: 1px solid var(--color-primary-border);
+  border-bottom: 1px solid var(--color-primary-border);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.65rem 0;
+  box-shadow: inset 0 2px 4px rgba(90, 61, 49, 0.03);
+}
+
+.fun-ticker-track {
+  display: inline-flex;
+  gap: 2.5rem;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.fun-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.fun-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.fun-ticker-item .emoji {
+  font-size: 1.1rem;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* 3. TIPOGRAFÍAS Y SUBRAYADO ORGÁNICO */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-caramel);
+  background: var(--color-caramel-bg);
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(198, 124, 78, 0.2);
+}
+
+.section-title {
+  font-size: 2.3rem;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  position: relative;
+  display: inline-block;
+}
+
+/* Línea orgánica estilo menú oficial */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 75%;
+  height: 4px;
+  background: var(--color-primary);
+  opacity: 0.65;
+  margin: 0.4rem auto 0;
+  border-radius: 99px;
+  transform: rotate(-0.5deg);
+}
+
+.section-subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.8rem;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 4. HEADER Y NAVEGACIÓN */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(246, 239, 230, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-primary-border);
+  transition: all var(--transition-fast);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  overflow: hidden;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-bounce);
+}
+
+.brand-link:hover .brand-badge {
+  transform: rotate(6deg) scale(1.06);
+}
+
+.brand-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.brand-slogan {
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+}
+
+/* Enlaces de navegación */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.nav-cta-btn {
+  background: var(--color-primary);
+  color: #FFF !important;
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(90, 61, 49, 0.2);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.nav-cta-btn:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(90, 61, 49, 0.28);
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  padding: 0;
+}
+
+.mobile-toggle span {
+  display: block;
+  height: 2.5px;
+  width: 100%;
+  background: var(--color-primary);
+  border-radius: 99px;
+  transition: all var(--transition-fast);
+}
+
+/* 5. HERO SECTION */
+.hero {
+  padding: 3rem 0 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FFF;
+  border: 1px solid var(--color-primary-border);
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.hero-pill-badge .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-matcha);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+}
+
+.hero-title span.accent-taro {
+  color: var(--color-taro);
+}
+
+.hero-title span.accent-caramel {
+  color: var(--color-caramel);
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+  max-width: 530px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  width: 100%;
+  max-width: 290px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #FFF;
+  box-shadow: 0 4px 14px rgba(90, 61, 49, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(90, 61, 49, 0.35);
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #FFF;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+}
+
+.btn-whatsapp:hover {
+  background: #20BA5A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.btn-outline {
+  background: #FFF;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface-subtle);
+  transform: translateY(-2px);
+}
+
+.hero-visual {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+  border: 4px solid #FFFFFF;
+}
+
+.hero-image-wrapper img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.hero-image-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+.floating-badge {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.floating-badge.badge-top {
+  top: 15px;
+  right: -10px;
+  animation-delay: 0s;
+}
+
+.floating-badge.badge-bottom {
+  bottom: 20px;
+  left: -10px;
+  animation-delay: 2s;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* 6. SECCIÓN DE MENÚ GENERAL */
+.menu-section {
+  padding: 4rem 0;
+  position: relative;
+}
+
+/* Categoría Banner / Header */
+.category-block {
+  margin-bottom: 4.5rem;
+}
+
+.category-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid var(--color-primary-border);
+  padding-bottom: 0.75rem;
+}
+
+.category-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  color: var(--color-primary);
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.category-main-title {
+  font-size: 1.85rem;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+}
+
+.category-badge-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  margin-left: auto;
+}
+
+/* 7. CATEGORÍA: POSTRES & CREPAS */
+.crepas-container {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-primary-border);
+}
+
+.crepas-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.crepas-media {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.crepas-media img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.crepas-media:hover img {
+  transform: scale(1.04);
+}
+
+.crepas-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+  color: var(--color-primary);
+}
+
+.crepas-info .subtitle {
+  color: var(--color-caramel);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.crepas-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* Selector de Punto Pick Up en Crepas */
+.pickup-selector-box {
+  background: var(--color-surface-subtle);
+  border: 1.5px solid var(--color-primary-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.25rem;
+}
+
+.pickup-selector-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pickup-options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.pickup-option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  background: #FFF;
+  border: 1.5px solid var(--color-primary-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.pickup-option-btn:hover {
+  border-color: var(--color-caramel);
+  transform: translateY(-2px);
+}
+
+.pickup-option-btn.selected {
+  background: var(--color-primary);
+  color: #FFF;
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 10px rgba(90, 61, 49, 0.2);
+}
+
+.pickup-option-btn .check-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.pickup-option-btn.selected .check-circle {
+  background: #FFF;
+  color: var(--color-primary);
+  border-color: #FFF;
+}
+
+/* Barra de Herramientas Divertidas de Crepas */
+.ingredients-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.ingredients-section-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-fun-random {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, var(--color-caramel-bg) 0%, #FBE5D8 100%);
+  color: var(--color-caramel);
+  border: 1.5px dashed var(--color-caramel);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+}
+
+.btn-fun-random:hover {
+  background: var(--color-caramel);
+  color: #FFF;
+  transform: rotate(-2deg) scale(1.04);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-fun-random:active {
+  transform: scale(0.96);
+}
+
+/* Chips interactivos de ingredientes */
+.chips-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1.25rem;
+}
+
+.ingredient-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--color-bg-alt);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary-border);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+}
+
+.ingredient-chip:hover {
+  border-color: var(--color-caramel);
+  background: var(--color-caramel-bg);
+  transform: translateY(-2px);
+}
+
+.ingredient-chip.selected {
+  background: var(--color-primary);
+  color: #FFF;
+  border-color: var(--color-primary);
+  box-shadow: 0 3px 8px rgba(90, 61, 49, 0.25);
+  transform: scale(1.03);
+}
+
+.ingredient-chip .chip-icon {
+  font-size: 0.85rem;
+  transition: transform var(--transition-fast);
+}
+
+.ingredient-chip.selected .chip-icon {
+  transform: scale(1.15);
+}
+
+/* Crepa Builder Interactivo Box */
+.crepa-builder-status {
+  background: var(--color-surface-subtle);
+  border: 1px dashed var(--color-caramel);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: all var(--transition-smooth);
+}
+
+.crepa-status-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.crepa-status-text strong {
+  color: var(--color-primary);
+}
+
+.crepa-order-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-caramel);
+  color: #FFF;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.65rem 1.3rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+  align-self: flex-start;
+  box-shadow: 0 3px 10px rgba(198, 124, 78, 0.3);
+}
+
+.crepa-order-btn:hover {
+  background: #B3683C;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(198, 124, 78, 0.4);
+}
+
+/* 8. CATEGORÍA: FRAPPES */
+.frappes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.frappe-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-primary-border);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.frappe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(90, 61, 49, 0.22);
+}
+
+.frappe-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  z-index: 2;
+}
+
+.badge-taro {
+  background: var(--color-taro-bg);
+  color: var(--color-taro);
+  border: 1px solid rgba(157, 129, 186, 0.3);
+}
+
+.badge-oreo {
+  background: #F1ECE6;
+  color: var(--color-primary);
+  border: 1px solid rgba(90, 61, 49, 0.25);
+}
+
+.frappe-visual {
+  height: 200px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  position: relative;
+  background: var(--color-bg-alt);
+}
+
+.frappe-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.frappe-card:hover .frappe-visual img {
+  transform: scale(1.05);
+}
+
+.frappe-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.frappe-title {
+  font-size: 1.35rem;
+  color: var(--color-primary);
+}
+
+.frappe-title.accent-taro {
+  color: var(--color-taro);
+}
+
+.frappe-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.frappe-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--color-primary-border);
+}
+
+.frappe-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.order-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+}
+
+.order-mini-btn:hover {
+  background: var(--color-primary);
+  color: #FFF;
+}
+
+/* 9. CATEGORÍA: BEBIDAS */
+.bebidas-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.subcat-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-primary-border);
+  transition: transform var(--transition-fast);
+}
+
+.subcat-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+.subcat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  border-bottom: 1.5px solid var(--color-bg);
+  padding-bottom: 0.75rem;
+}
+
+.subcat-header h4 {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.subcat-header .header-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+
+/* Lista de ítems estilizados */
+.drink-items-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.drink-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-subtle);
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.drink-item:hover {
+  background: #FFF;
+  border-color: var(--color-primary-border);
+  transform: translateX(4px);
+}
+
+.drink-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.drink-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-caramel);
+  flex-shrink: 0;
+}
+
+.drink-item.taro .drink-bullet { background: var(--color-taro); }
+.drink-item.matcha .drink-bullet { background: var(--color-matcha); }
+.drink-item.berry .drink-bullet { background: var(--color-berry); }
+
+.drink-name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.drink-item.taro .drink-name { color: #7B5BA0; }
+.drink-item.matcha .drink-name { color: #5D805B; }
+
+.drink-action-icon {
+  color: var(--color-text-light);
+  opacity: 0.6;
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+}
+
+.drink-item:hover .drink-action-icon {
+  opacity: 1;
+  color: var(--color-primary);
+  transform: translateX(2px);
+}
+
+/* Sodas Italianas Pills Grid */
+.sodas-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.soda-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--color-bg-alt);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-primary-border);
+  transition: all var(--transition-fast);
+}
+
+.soda-pill:hover {
+  background: #FFF;
+  border-color: var(--color-berry);
+  color: var(--color-berry);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.soda-pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-berry);
+}
+
+/* Ruleta Divertida de Bebidas */
+.drink-roulette-box {
+  background: #FFF;
+  border: 1.5px dashed var(--color-taro);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.drink-roulette-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.drink-roulette-result {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-taro);
+  min-height: 1.6rem;
+  transition: all var(--transition-bounce);
+}
+
+/* Showcase Visual de Bebidas Oficiales */
+.drinks-feature-banner {
+  background: linear-gradient(135deg, #FAF6F0 0%, #F5ECE3 100%);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-primary-border);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.drinks-feature-img {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.drinks-feature-img img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.drinks-feature-text h4 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.drinks-feature-text p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.2rem;
+}
+
+/* 10. SECCIÓN PUNTOS PICK UP */
+.pickup-section {
+  padding: 4.5rem 0;
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-primary-border);
+  position: relative;
+}
+
+.pickup-locations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.pickup-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  border: 1.5px solid var(--color-primary-border);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.pickup-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-caramel);
+}
+
+.pickup-card-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: var(--color-caramel-bg);
+  color: var(--color-caramel);
+  border: 1px solid rgba(198, 124, 78, 0.3);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+}
+
+.pickup-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-primary-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-primary);
+}
+
+.pickup-card h3 {
+  font-size: 1.35rem;
+  color: var(--color-primary);
+  margin-bottom: 0.4rem;
+}
+
+.pickup-card .pickup-zone {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-caramel);
+  margin-bottom: 1rem;
+}
+
+.pickup-details-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.pickup-details-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
+.pickup-details-list .li-icon {
+  color: var(--color-primary);
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.pickup-card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-primary-border);
+}
+
+.pickup-order-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: var(--color-primary);
+  color: #FFF;
+  transition: all var(--transition-fast);
+}
+
+.pickup-order-link:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+/* 11. SECCIÓN BRACELETS & LIFESTYLE */
+.lifestyle-section {
+  padding: 4.5rem 0;
+  background: #FFF;
+  border-top: 1px solid var(--color-primary-border);
+  border-bottom: 1px solid var(--color-primary-border);
+  position: relative;
+}
+
+.lifestyle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.lifestyle-media {
+  position: relative;
+}
+
+.lifestyle-image-frame {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+  border: 6px solid var(--color-bg);
+}
+
+.lifestyle-image-frame img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.lifestyle-image-frame:hover img {
+  transform: scale(1.03);
+}
+
+.lifestyle-accent-card {
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hover);
+  border: 1px solid var(--color-primary-border);
+  max-width: 220px;
+}
+
+.lifestyle-accent-card .card-title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.2rem;
+}
+
+.lifestyle-accent-card .card-sub {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.lifestyle-content {
+  text-align: left;
+}
+
+.lifestyle-tag {
+  color: var(--color-taro);
+  background: var(--color-taro-bg);
+  border-color: rgba(157, 129, 186, 0.25);
+}
+
+.lifestyle-title {
+  font-size: 2.1rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.lifestyle-desc {
+  font-size: 0.98rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.lifestyle-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.lifestyle-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+}
+
+.lifestyle-features .check-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-matcha-bg);
+  color: var(--color-matcha);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* 12. FOOTER & CONTACTO */
+.site-footer {
+  background: var(--color-surface);
+  color: var(--color-text-main);
+  padding: 4.5rem 0 2rem;
+  border-top: 1px solid var(--color-primary-border);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand .brand-logo-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.footer-brand .footer-logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  overflow: hidden;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  max-width: 320px;
+  margin-bottom: 1.25rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--color-primary-border);
+}
+
+.social-btn:hover {
+  background: var(--color-primary);
+  color: #FFF;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+.footer-col h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-col h4::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2.5px;
+  background: var(--color-caramel);
+  margin-top: 0.35rem;
+  border-radius: 99px;
+}
+
+.contact-info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.contact-info-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.contact-icon {
+  color: var(--color-caramel);
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.schedule-badge {
+  display: inline-block;
+  background: var(--color-matcha-bg);
+  color: var(--color-matcha);
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  margin-top: 0.25rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-bg);
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+}
+
+/* 13. BOTÓN FLOTANTE WHATSAPP */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: #25D366;
+  color: #FFF;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: all var(--transition-smooth);
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+
+.floating-whatsapp svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+
+/* 14. RESPONSIVE BREAKPOINTS (TABLET & DESKTOP) */
+@media (min-width: 640px) {
+  .hero-actions {
+    flex-direction: row;
+  }
+  
+  .btn {
+    width: auto;
+  }
+
+  .frappes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .drink-items-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pickup-options-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pickup-locations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    text-align: left;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .hero-description {
+    margin-left: 0;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+  }
+
+  .crepas-layout {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .bebidas-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .drinks-feature-banner {
+    grid-template-columns: 1fr 1fr;
+    grid-column: span 2;
+  }
+
+  .lifestyle-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 2.6rem;
+  }
+
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
+  .hero-image-wrapper img {
+    height: 400px;
+  }
+}
+
+/* 15. MOBILE MENU STYLES (para pantallas menores a 768px) */
+@media (max-width: 767px) {
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    gap: 0.85rem;
+    border-bottom: 1px solid var(--color-primary-border);
+    box-shadow: var(--shadow-card);
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-smooth);
+  }
+
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+  }
+
+  .nav-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

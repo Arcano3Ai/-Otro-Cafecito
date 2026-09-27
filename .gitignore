@@ -1,0 +1,15 @@
+# Logs y temporales
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Carpeta de origen descargada de Instagram (no requerida en producción)
+Instagram_files/
+
+# Entornos virtuales y caché
+__pycache__/
+*.pyc
+.env
+.vscode/
+.idea/
